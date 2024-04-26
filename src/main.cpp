@@ -35,6 +35,7 @@
 #include "components/motor/MotorController.h"
 #include "components/datetime/DateTimeController.h"
 #include "components/heartrate/HeartRateController.h"
+#include "components/prediction/PredictionController.h"
 #include "components/fs/FS.h"
 #include "drivers/Spi.h"
 #include "drivers/SpiMaster.h"
@@ -96,6 +97,9 @@ Pinetime::Controllers::Ble bleController;
 Pinetime::Controllers::HeartRateController heartRateController;
 Pinetime::Applications::HeartRateTask heartRateApp(heartRateSensor, heartRateController);
 
+Pinetime::Controllers::PredictionController predictionController;
+Pinetime::Applications::PredictionTask predictionApp(predictionController);
+
 Pinetime::Controllers::FS fs {spiNorFlash};
 Pinetime::Controllers::Settings settingsController {fs};
 Pinetime::Controllers::MotorController motorController {};
@@ -117,6 +121,7 @@ Pinetime::Applications::DisplayApp displayApp(lcd,
                                               watchdog,
                                               notificationManager,
                                               heartRateController,
+                                              predictionController,
                                               settingsController,
                                               motorController,
                                               motionController,
@@ -140,8 +145,10 @@ Pinetime::System::SystemTask systemTask(spi,
                                         motionSensor,
                                         settingsController,
                                         heartRateController,
+                                        predictionController,
                                         displayApp,
                                         heartRateApp,
+                                        predictionApp,
                                         fs,
                                         touchHandler,
                                         buttonHandler);

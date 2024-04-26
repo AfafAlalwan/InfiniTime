@@ -37,6 +37,7 @@ namespace Pinetime {
     class DateTime;
     class NotificationManager;
     class HeartRateController;
+    class PredictionController;
     class MotionController;
     class TouchHandler;
     class SimpleWeatherService;
@@ -60,6 +61,7 @@ namespace Pinetime {
                  const Drivers::Watchdog& watchdog,
                  Pinetime::Controllers::NotificationManager& notificationManager,
                  Pinetime::Controllers::HeartRateController& heartRateController,
+                 Pinetime::Controllers::PredictionController& predictionController,
                  Controllers::Settings& settingsController,
                  Pinetime::Controllers::MotorController& motorController,
                  Pinetime::Controllers::MotionController& motionController,
@@ -89,6 +91,7 @@ namespace Pinetime {
       Pinetime::System::SystemTask* systemTask = nullptr;
       Pinetime::Controllers::NotificationManager& notificationManager;
       Pinetime::Controllers::HeartRateController& heartRateController;
+      Pinetime::Controllers::PredictionController& predictionController;
       Pinetime::Controllers::Settings& settingsController;
       Pinetime::Controllers::MotorController& motorController;
       Pinetime::Controllers::MotionController& motionController;

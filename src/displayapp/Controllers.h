@@ -15,6 +15,7 @@ namespace Pinetime {
     class DateTime;
     class NotificationManager;
     class HeartRateController;
+    class PredictionController;
     class Settings;
     class MotorController;
     class MotionController;
@@ -25,6 +26,7 @@ namespace Pinetime {
     class Timer;
     class MusicService;
     class NavigationService;
+    // class StandardIfTree;
   }
 
   namespace System {
@@ -38,6 +40,7 @@ namespace Pinetime {
       Pinetime::Controllers::DateTime& dateTimeController;
       Pinetime::Controllers::NotificationManager& notificationManager;
       Pinetime::Controllers::HeartRateController& heartRateController;
+      Pinetime::Controllers::PredictionController& predictionController;
       Pinetime::Controllers::Settings& settingsController;
       Pinetime::Controllers::MotorController& motorController;
       Pinetime::Controllers::MotionController& motionController;
@@ -51,6 +54,8 @@ namespace Pinetime {
       Pinetime::Components::LittleVgl& lvgl;
       Pinetime::Controllers::MusicService* musicService;
       Pinetime::Controllers::NavigationService* navigationService;
+      // Pinetime::Controllers::StandardIfTree* standardIfTree;
+
     };
   }
 }

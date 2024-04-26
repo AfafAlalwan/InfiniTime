@@ -16,6 +16,7 @@
 #include "drivers/PinMap.h"
 #include "main.h"
 #include "BootErrors.h"
+#include "predictionTask/PredictionTask.h"
 
 #include <memory>
 
@@ -47,8 +48,10 @@ SystemTask::SystemTask(Drivers::SpiMaster& spi,
                        Pinetime::Drivers::Bma421& motionSensor,
                        Controllers::Settings& settingsController,
                        Pinetime::Controllers::HeartRateController& heartRateController,
+                       Pinetime::Controllers::PredictionController& predictionController,
                        Pinetime::Applications::DisplayApp& displayApp,
                        Pinetime::Applications::HeartRateTask& heartRateApp,
+                       Pinetime::Applications::PredictionTask& predictionApp,
                        Pinetime::Controllers::FS& fs,
                        Pinetime::Controllers::TouchHandler& touchHandler,
                        Pinetime::Controllers::ButtonHandler& buttonHandler)
@@ -66,9 +69,11 @@ SystemTask::SystemTask(Drivers::SpiMaster& spi,
     motionSensor {motionSensor},
     settingsController {settingsController},
     heartRateController {heartRateController},
+    predictionController {predictionController},
     motionController {motionController},
     displayApp {displayApp},
     heartRateApp(heartRateApp),
+    predictionApp(predictionApp),
     fs {fs},
     touchHandler {touchHandler},
     buttonHandler {buttonHandler},
@@ -144,6 +149,7 @@ void SystemTask::Work() {
   heartRateSensor.Init();
   heartRateSensor.Disable();
   heartRateApp.Start();
+  predictionApp.Start();
 
   buttonHandler.Init(this);
 
@@ -416,6 +422,12 @@ void SystemTask::Work() {
     if (nrf_gpio_pin_read(PinMap::Button) == 0) {
       watchdog.Reload();
     }
+
+  unsigned int result;
+  if (xQueueReceive(predictionApp.resultQueue, &result, portMAX_DELAY) == pdPASS) {
+    predictionController.setResult(result);
+  }
+
   }
 #pragma clang diagnostic pop
 }

@@ -397,6 +397,7 @@ list(APPEND SOURCE_FILES
         displayapp/screens/Alarm.cpp
         displayapp/screens/Styles.cpp
         displayapp/screens/WeatherSymbols.cpp
+        displayapp/screens/Trees.cpp
         displayapp/Colors.cpp
         displayapp/widgets/Counter.cpp
         displayapp/widgets/PageIndicator.cpp
@@ -484,6 +485,10 @@ list(APPEND SOURCE_FILES
         components/heartrate/HeartRateController.cpp
         components/heartrate/Ppg.cpp
 
+        predictionTask/PredictionTask.cpp
+        components/prediction/StandardIfTree.cpp
+        components/prediction/PredictionController.cpp
+
         buttonhandler/ButtonHandler.cpp
         touchhandler/TouchHandler.cpp
 
@@ -547,6 +552,9 @@ list(APPEND RECOVERY_SOURCE_FILES
         components/heartrate/HeartRateController.cpp
         heartratetask/HeartRateTask.cpp
         components/heartrate/Ppg.cpp
+        components/prediction/StandardIfTree.cpp
+        components/prediction/PredictionController.cpp
+        predictionTask/PredictionTask.cpp
 
         components/motor/MotorController.cpp
         components/fs/FS.cpp
@@ -665,6 +673,9 @@ set(INCLUDE_FILES
         heartratetask/HeartRateTask.h
         components/heartrate/Ppg.h
         components/heartrate/HeartRateController.h
+        components/prediction/StandardIfTree.h
+        components/prediction/PredictionController.h
+        predictionTask/PredictionTask.h
         libs/arduinoFFT/src/arduinoFFT.h
         libs/arduinoFFT/src/defs.h
         libs/arduinoFFT/src/types.h
